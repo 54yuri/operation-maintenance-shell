@@ -16,7 +16,7 @@ cp $cmdFile $tmpCmdFile
 
 cat $tmplFile | grep -v IP | while read IP worldid
 do
-	cat $cmdFile | sed "s/{{WORLDID}}/$worldid/g" > $tmpCmdFile
+	cat $cmdFile > $tmpCmdFile
 	sh remote_cmd.sh $IP $user "$passwd" $tmpCmdFile "$outFile${worldid}"
 done
 
