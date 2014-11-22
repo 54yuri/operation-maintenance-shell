@@ -7,10 +7,15 @@ fi
 
 ip=$1
 user=$2
-passwd=$3
+
+#need to process $ in password
+passwd=`echo "$3" | sed 's/\\$/\\\\$/g'`
+
 cmdFile=$4
 outFile=$5
 
+#echo $3
+#echo "pw:${passwd}\n"
 
 #step1 upload cmd file 
 dst="~${user}"
@@ -23,7 +28,7 @@ spawn rsync -ac -e "ssh -p36000 -l$user" $cmdFile $ip:$dst
 for {} {1} {} {
     expect {
         "yes/no)?" {send "yes\n"}
-        "assword:" {send "$passwd\n"}
+        "assword:" {send "${passwd}\n"}
         eof break
     }
 }
