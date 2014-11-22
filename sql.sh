@@ -1,7 +1,7 @@
 #!/bin/sh
 USER="aaa"
 PW="bbb"
-DB="db_xxx_{{WORLDID}}"
+DB="db_xxx"
 
 STATEMENT="select * from table1;"
 
